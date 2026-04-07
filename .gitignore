@@ -1,0 +1,11 @@
+config.py
+__pycache__/
+*.pyc
+.pytest_cache/
+.superpowers/
+*.egg-info/
+dist/
+.DS_Store
+editions/.index.json
+Color _ Soulsight.html
+Tipografía _ Soulsight.html

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Con CriterIA · Edición #{{ edition_num }}</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #d4cfc4; font-family: 'Lora', Georgia, serif; padding: 40px 20px; }
+.newsletter { max-width: 620px; margin: 0 auto; background: #e8e4d9; border-radius: 4px; overflow: hidden; box-shadow: 0 4px 32px rgba(24,16,8,0.15); }
+
+/* HEADER */
+.header { background: #181008; padding: 36px 40px 28px; border-bottom: 3px solid #ff6f4d; }
+.header-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #86897c; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.header-title { font-family: 'DM Sans', sans-serif; font-size: 36px; font-weight: 600; color: #e8e4d9; letter-spacing: -0.5px; margin-bottom: 8px; }
+.header-title span { color: #ff6f4d; }
+.header-tagline { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: #abb4ba; line-height: 1.5; }
+
+/* INTRO */
+.intro { padding: 24px 40px; border-bottom: 1px solid #d4cfc4; }
+.intro p { font-size: 15px; color: #4c2f12; line-height: 1.7; }
+
+/* SECTIONS */
+.section { padding: 28px 40px; border-bottom: 1px solid #d4cfc4; }
+.section-label-text { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 4px 10px; border-radius: 2px; margin-bottom: 10px; }
+.label-pepper { background: #ff6f4d; color: #fff; }
+.label-needy { background: #ffb655; color: #181008; }
+.label-deepy { background: #59583c; color: #e8e4d9; }
+.label-goofy { background: #ffc294; color: #181008; }
+.section-title { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 600; color: #181008; margin-bottom: 6px; }
+.section-desc { font-family: 'Lora', serif; font-style: italic; font-size: 13px; color: #86897c; line-height: 1.6; margin-bottom: 22px; }
+
+/* ARTICLES (pepper) */
+.article { display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid #d4cfc4; align-items: flex-start; }
+.article:first-of-type { border-top: none; padding-top: 0; }
+.article-left { display: flex; gap: 12px; flex: 1; min-width: 0; }
+.article-num { font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 500; color: #ffc294; min-width: 28px; line-height: 1.2; flex-shrink: 0; }
+.article-body { flex: 1; min-width: 0; }
+.article-source { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #86897c; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+.article-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; color: #181008; margin-bottom: 5px; line-height: 1.35; }
+.article-title a { color: inherit; text-decoration: none; }
+.article-title a:hover { text-decoration: underline; }
+.article-desc { font-size: 13px; color: #59583c; line-height: 1.6; margin-bottom: 10px; }
+.article-thumb { width: 80px; height: 60px; border-radius: 3px; object-fit: cover; flex-shrink: 0; filter: sepia(15%); }
+
+/* TRADUCCIÓN A HUMANO */
+.ai-explain { background: #fff9f2; border-left: 3px solid #ffb655; border-radius: 0 3px 3px 0; padding: 10px 12px; margin-top: 2px; }
+.ai-explain-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #b24b28; margin-bottom: 5px; }
+.ai-explain-text { font-family: 'Lora', serif; font-size: 13px; color: #4c2f12; line-height: 1.65; }
+
+/* NEEDY */
+.needy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.needy-card { background: #fff9f2; border-radius: 3px; overflow: hidden; border: 1px solid #ffc294; }
+.needy-img { width: 100%; height: 110px; object-fit: cover; display: block; filter: sepia(20%); }
+.needy-card-body { padding: 14px; }
+.needy-type { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #b24b28; margin-bottom: 6px; }
+.needy-title { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; color: #181008; line-height: 1.35; margin-bottom: 5px; }
+.needy-title a { color: inherit; text-decoration: none; }
+.needy-title a:hover { text-decoration: underline; }
+.needy-source { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #86897c; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.needy-explain { border-top: 1px solid #ffc294; padding-top: 10px; }
+.needy-explain-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #b24b28; margin-bottom: 5px; }
+.needy-explain-text { font-family: 'Lora', serif; font-size: 12px; color: #4c2f12; line-height: 1.6; font-style: italic; }
+
+/* DEEPY */
+.deepy-img { width: 100%; height: 180px; object-fit: cover; display: block; border-radius: 3px 3px 0 0; filter: sepia(30%) brightness(0.85); }
+.deepy-card { background: #181008; border-radius: 0 0 3px 3px; padding: 22px; }
+.deepy-quote { font-family: 'Lora', serif; font-style: italic; font-size: 15px; color: #ffc294; line-height: 1.6; margin-bottom: 14px; border-left: 3px solid #ff6f4d; padding-left: 14px; }
+.deepy-title { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.deepy-title a { color: #e8e4d9; text-decoration: none; }
+.deepy-title a:hover { text-decoration: underline; }
+.deepy-desc { font-size: 13px; color: #86897c; line-height: 1.6; margin-bottom: 12px; }
+.deepy-source { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #59583c; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+.deepy-explain { border-top: 1px solid #2d2010; padding-top: 14px; }
+.deepy-explain-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #ffb655; margin-bottom: 6px; }
+.deepy-explain-text { font-family: 'Lora', serif; font-size: 13px; color: #ffc294; line-height: 1.65; font-style: italic; }
+
+/* GOOFY */
+.goofy-img { width: 100%; max-height: 300px; object-fit: cover; display: block; border-radius: 3px; margin-bottom: 12px; }
+.goofy-caption { font-family: 'Lora', serif; font-style: italic; font-size: 13px; color: #86897c; text-align: center; line-height: 1.6; }
+
+/* FOOTER */
+.footer { background: #4c2f12; padding: 24px 40px; text-align: center; }
+.footer p { font-family: 'Lora', serif; font-style: italic; font-size: 13px; color: #ffc294; line-height: 1.6; }
+.footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #86897c; letter-spacing: 1px; margin-top: 10px; }
+.footer-meta a { color: #86897c; }
+</style>
+</head>
+<body>
+<div class="newsletter">
+
+  <div class="header">
+    <div class="header-meta">Semana {{ week }} · {{ date }} · Edición #{{ edition_num }}</div>
+    <div class="header-title">Con Criter<span>IA</span></div>
+    <div class="header-tagline">Lo que necesitas saber esta semana sobre inteligencia artificial — con criterio.</div>
+  </div>
+
+  <div class="intro">
+    <p>{{ intro }}</p>
+  </div>
+
+  <!-- LO PEPPER -->
+  <div class="section">
+    <div><span class="section-label-text label-pepper">🌶️ lo pepper</span></div>
+    <div class="section-title">noticias calientes</div>
+    <div class="section-desc">curadas por una humana con el corazón igual de hot</div>
+
+    {% for article in pepper %}
+    <div class="article">
+      <div class="article-left">
+        <div class="article-num">0{{ loop.index }}</div>
+        <div class="article-body">
+          <div class="article-source">{{ article.source }}</div>
+          <div class="article-title"><a href="{{ article.url }}">{{ article.title }}</a></div>
+          {% if article.excerpt %}<div class="article-desc">{{ article.excerpt }}</div>{% endif %}
+          <div class="ai-explain">
+            <div class="ai-explain-label">✦ traducción a humano</div>
+            <div class="ai-explain-text">{{ article.translation }}</div>
+          </div>
+        </div>
+      </div>
+      {% if article.image_url %}
+      <img class="article-thumb" src="{{ article.image_url }}" alt="">
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- LO NEEDY -->
+  <div class="section">
+    <div><span class="section-label-text label-needy">✦ lo needy</span></div>
+    <div class="section-title">aprendizajes de la semana</div>
+    <div class="section-desc">hacks, cositas que necesitamos aprender para estar en la cresta de la ola (o al menos disimular)</div>
+
+    <div class="needy-grid">
+      {% for article in needy %}
+      <div class="needy-card">
+        {% if article.image_url %}
+        <img class="needy-img" src="{{ article.image_url }}" alt="">
+        {% endif %}
+        <div class="needy-card-body">
+          <div class="needy-type">{{ article.content_type }}</div>
+          <div class="needy-title"><a href="{{ article.url }}">{{ article.title }}</a></div>
+          <div class="needy-source">{{ article.source }}</div>
+          <div class="needy-explain">
+            <div class="needy-explain-label">✦ traducción a humano</div>
+            <div class="needy-explain-text">{{ article.translation }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- LO DEEPY -->
+  <div class="section">
+    <div><span class="section-label-text label-deepy">◎ lo deepy</span></div>
+    <div class="section-title">para leer sin prisa</div>
+    <div class="section-desc">lo que no puedes leer entre reunión y reunión porque requiere contexto, reflexión y dejar que el criterio tome forma</div>
+
+    {% if deepy.image_url %}
+    <img class="deepy-img" src="{{ deepy.image_url }}" alt="">
+    {% endif %}
+    <div class="deepy-card">
+      {% if deepy.excerpt %}
+      <div class="deepy-quote">{{ deepy.excerpt }}</div>
+      {% endif %}
+      <div class="deepy-title"><a href="{{ deepy.url }}">{{ deepy.title }}</a></div>
+      <div class="deepy-source">{{ deepy.source }}</div>
+      <div class="deepy-explain">
+        <div class="deepy-explain-label">✦ traducción a humano</div>
+        <div class="deepy-explain-text">{{ deepy.translation }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LO GOOFY -->
+  <div class="section">
+    <div><span class="section-label-text label-goofy">😄 lo goofy</span></div>
+    <div class="section-title">el postre</div>
+    <div class="section-desc">unas risas después de tocar fondo en medio de tanta movida artificial</div>
+
+    {% if goofy.image_url %}
+    <img class="goofy-img" src="{{ goofy.image_url }}" alt="">
+    {% endif %}
+    <div class="goofy-caption">{{ goofy.title }}</div>
+  </div>
+
+  <div class="footer">
+    <p>"La inteligencia sin criterio es ruido.<br>Con CriterIA, intentamos que sea señal."</p>
+    <div class="footer-meta">
+      <a href="../index.html">Ediciones anteriores</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
